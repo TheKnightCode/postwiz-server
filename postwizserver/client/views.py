@@ -5,6 +5,9 @@ import json
 
 # Create your views here.
 def status(request):
+    if request.method != "GET": #Esta URL so aceita GET
+        return HttpResponse(None, status = 405)
+
     with open("./database/mailHistory.json") as jsonFile:
         jsonData = json.load(jsonFile)
 
@@ -14,6 +17,9 @@ def status(request):
         return JsonResponse(data = None, safe = False, status = 204)
 
 def history(request):
+    if request.method != "GET": #Esta URL so aceita GET
+        return HttpResponse(None, status = 405)
+
     with open("./database/mailHistory.json") as jsonFile:
         jsonData = json.load(jsonFile)
 
